@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mobile.restaruant.databinding.ListItemWeatherBinding;
@@ -65,7 +64,7 @@ public class AdapterWeather extends RecyclerView.Adapter<AdapterWeather.GenericV
         }
 
         public void bind(RestaurantViewModel restaurantViewModel1, Integer position) {
-            restaurantViewModel1.imagesAt(position);
+//            restaurantViewModel1.imagesAt(position);
 
         }
 

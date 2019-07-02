@@ -1,6 +1,5 @@
 package com.mobile.restaruant.network;
 
-import com.mobile.restaruant.R;
 import com.mobile.restaruant.network.model.response.restaurant.PlacesResults;
 import com.mobile.restaruant.network.model.response.weather.WeatherResponse;
 

@@ -1,15 +1,18 @@
 package com.mobile.restaruant;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.mobile.restaruant.databinding.ActivityMainBinding;
+import com.mobile.restaruant.location.LocationListener;
 import com.mobile.restaruant.network.APIResponseRestaurant;
 import com.mobile.restaruant.network.APIResponseWeather;
 import com.mobile.restaruant.network.model.response.restaurant.PlacesResults;
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         binding.setRestaurantViewModel(restaurantViewModel);
         binding.setLifecycleOwner(this);
 
+            getLocationUpdates();
+
 //        binding.getRestaurantViewModel().getRestaurants();
         binding.getRestaurantViewModel().getWeatherForecast();
 
@@ -42,6 +47,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable APIResponseWeather apiResponseWeather) {
                 consumeResponseWeather(apiResponseWeather);
+            }
+        });
+    }
+
+        private void getLocationUpdates() {
+        LocationListener.getInstance(this.getApplicationContext()).observe((LifecycleOwner) MainActivity.this, new Observer<Location>() {
+            @Override
+            public void onChanged(@androidx.annotation.Nullable Location location) {
+                if (location != null) {
+                    Log.i("LocationCoor ", location.getLatitude() +" " + location.getLongitude());
+//                    getWeather(location.getLatitude(), location.getLongitude());
+//                    getAddress(location.getLatitude(), location.getLongitude());
+                    LocationListener.getInstance(MainActivity.this.getApplicationContext()).removeObserver(this);
+                } else
+                    Log.i("LocationCoor ", "null");
             }
         });
     }

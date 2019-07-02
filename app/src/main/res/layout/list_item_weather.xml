@@ -3,9 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <variable
+            name="position"
+            type="java.lang.Integer" />
+
         <variable
             name="weatherViewModel"
-            type="com.mobile.restaruant.network.model.response.weather.WeatherResponse" />
+            type="com.mobile.restaruant.viewmodels.WeatherViewModel" />
     </data>
 
     <LinearLayout
